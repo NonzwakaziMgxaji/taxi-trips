@@ -6,7 +6,7 @@ services:
   - postgresql
 
 env:
-  - DATABASE_URL=postgresql://postgres@localhost:5432/taxi_indutsry
+  - DATABASE_URL=postgresql://postgres@localhost:5432/taxi_industry
 
 before_script:
   - psql -c 'create database taxi_industry;' -U postgres
