@@ -4,6 +4,11 @@ create table route(
     fare decimal(10,2)
 );
 
+create table region(
+    id serial not null primary key,
+    name text not null
+);
+
 create table taxi(
     id serial not null primary key,
     regNo text not null,
@@ -19,7 +24,3 @@ create table trip(
     foreign key (taxi_id) references taxi(id)
 );
 
-create table region(
-    id serial not null primary key,
-    name text not null
-)
