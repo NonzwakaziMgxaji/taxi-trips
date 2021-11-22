@@ -3,7 +3,7 @@ let TaxiTrips = require("../taxi-trips");
 const pg = require("pg");
 const Pool = pg.Pool;
 
-const connectionString = process.env.DATABASE_URL || 'postgresql://localhost:5432/my_balloon_tests';
+const connectionString = process.env.DATABASE_URL  || 'postgresql://nzwakie:Bokang2851!@localhost:5432/taxi_industry';
 
 const pool = new Pool({
     connectionString
@@ -19,7 +19,7 @@ describe('Taxi Trips', function () {
 
         const taxiTrips = TaxiTrips(pool);
 
-        assert.equal(0, taxiTrips.totalTripCount());
+        assert.equal(0, await taxiTrips.totalTripCount());
     
 
     });
@@ -28,16 +28,16 @@ describe('Taxi Trips', function () {
 
         const taxiTrips = TaxiTrips(pool);
 
-        assert.deepStrictEqual([], taxiTrips.findAllRegions());
+        assert.deepStrictEqual([{name: 'Durban'}, {name: 'Cape Town'}, {name: 'Gauteng'}], await taxiTrips.findAllRegions());
 
     });
 
     it('should find all the taxis for a region', async function () {
         const taxiTrips = TaxiTrips(pool);
 
-        assert.deepStrictEqual([], taxiTrips.findTaxisForRegion('Durban'));
-        assert.deepStrictEqual([], taxiTrips.findTaxisForRegion('Cape Town'));
-        assert.deepStrictEqual([], taxiTrips.findTaxisForRegion('Gauteng'));
+        assert.deepStrictEqual([], await taxiTrips.findTaxisForRegion('Durban'));
+        assert.deepStrictEqual([], await taxiTrips.findTaxisForRegion('Cape Town'));
+        assert.deepStrictEqual([], await taxiTrips.findTaxisForRegion('Gauteng'));
 
     })
 
@@ -45,8 +45,8 @@ describe('Taxi Trips', function () {
 
         const taxiTrips = TaxiTrips(pool);
         
-        assert.deepStrictEqual([], taxiTrips.findTripsByRegNumber('...'));
-        assert.deepStrictEqual([], taxiTrips.findTripsByRegNumber('***'));
+        assert.deepStrictEqual([], await taxiTrips.findTripsByRegNumber('CA123456'));
+        assert.deepStrictEqual([], await taxiTrips.findTripsByRegNumber('GP123456'));
 
     });
 
