@@ -12,9 +12,9 @@ insert into route(id, name, fare) values (7, 'Umlazi - Durban Central', 17.00);
 insert into route(id, name, fare) values (8, 'Durban Central - Umhlanga Rocks', 7.00);
 insert into route(id, name, fare) values (9, 'Durban Central - Umbilo', 14.00);
 
-insert into taxi(id, regNo) values (1, 'KZN123456');
-insert into taxi(id, regNo) values (2, 'CA123456');
-insert into taxi(id, regNo) values (3, 'GP123456');
+insert into taxi(id, regNo, region_id) values (1, 'KZN123456', 1);
+insert into taxi(id, regNo, region_id) values (2, 'CA123456', 2);
+insert into taxi(id, regNo, region_id) values (3, 'GP123456', 3);
 
 
 

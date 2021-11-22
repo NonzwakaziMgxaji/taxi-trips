@@ -1,7 +1,7 @@
 module.exports = function(pool) {
 
     async function totalTripCount(){
-        let total = await pool.query('select taxi_id from trip')
+        let total = await pool.query('select * from trip')
         return total.rowCount;
     }
 
@@ -17,11 +17,11 @@ module.exports = function(pool) {
         // let taxiID = await pool.query('select regNo from taxi where region_id = $1', [id])
 
         let regionID = await pool.query('select regNo from taxi join region on region.id = taxi.region_id where region.name = $1', [region]);
-        return regionID.rows;
+        return regionID.rows[0].regno;
     }
 
     async function findTripsByRegNumber(reg){
-        let tripsByReg = await pool.query('select taxi_id from trip join taxi on taxi.id = trip.taxi_id where regNo = $1', [reg]);
+        let tripsByReg = await pool.query('select * from trip join taxi on taxi.id = trip.taxi_id where regNo = $1', [reg]);
         return tripsByReg.rows;
     }
 
